@@ -15,7 +15,7 @@ type server struct {
 
 func (s *server) GetUser(ctx context.Context, req *pb.Empty) (*pb.UserInfo, error) {
 	fmt.Println("Starting.......") 
-	return &pb.UserInfo{name:"Rodrigo", last_name:"Urcino", email:"francisco@miflink.com", age:"25", phone:"741"}, nil
+	return &pb.UserInfo{Name:"Rodrigo", Email:"francisco@miflink.com", Age:"25", Phone:"741"}, nil
 }
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	if err != nil {
 		panic("cannot create tcp connection" + err.Error())
 	}
-
+	fmt.Println("Running on port 50051")
 	serv := grpc.NewServer()
 	pb.RegisterUserServer(serv, &server{})
 	if err = serv.Serve(listner); err != nil {
